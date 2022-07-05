@@ -1,3 +1,48 @@
+:root{
+    --score-display-color: aliceblue;
+    --square-color: rgb(141, 141, 168);
+    --square-size: 120px;
+    --square-gap: 8px;
+}
+
 * {
     margin: 0;
+}
+
+body{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#game{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#scoreboard{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.score-display{
+    font-size: 1.4rem;
+
+    background-color: var(--score-display-color);
+    border: 1px solid var(--score-display-color);
+    border-radius: 16px;
+}
+
+#game-container{
+    display: grid;
+    grid-template-columns: repeat(3, var(--square-size));
+    grid-template-rows: repeat(3, var(--square-size));
+    gap: var(--square-gap);
+}
+
+.square{
+    background-color: var(--square-color);
+    border: 1px solid var(--square-color);
+    border-radius: 16px;
 }
