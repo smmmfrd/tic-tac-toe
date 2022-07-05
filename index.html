@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>smmmfrd's Tic-Tac-Toe</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="./script.js"></script>
 </head>
 <body>
     <div id="options">
@@ -13,8 +14,8 @@
     </div>
     <div id="game">
         <div id="scoreboard">
-            <div id="player-score" class="score-display">Player Score: 0</div>
-            <div id="enemy-score" class="score-display">AI Score: 0</div>
+            <div id="x-score" class="score-display">Player X Score: 0</div>
+            <div id="o-score" class="score-display">Player O Score: 0</div>
         </div>
         <div id="game-container">
             <div class="square"></div>
@@ -26,6 +27,9 @@
             <div class="square"></div>
             <div class="square"></div>
             <div class="square"></div>
+        </div>
+        <div>
+            <button id="reset-button">Reset Board</button>
         </div>
     </div>
 </body>
