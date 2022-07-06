@@ -1,6 +1,6 @@
 const squares = [...document.querySelectorAll(".square")];
 
-const resetButton = document.querySelector('#reset-button');
+document.querySelector('#ng-button').addEventListener('click', () => {newGame();});
 
 const playerX = document.querySelector("#x-score");
 var xScore = 0;
@@ -19,7 +19,7 @@ const GameSquare = (element) => {
     const logElement = () => console.log(element);
 
     const changeValue = (input) => {
-        if(element.textContent != ''){
+        if(element.textContent != '' || input === ''){
             return;
         }
         value = input.toUpperCase();
@@ -81,13 +81,13 @@ function nextTurn(){
             oScore++;
         }
         updateScoreboard();
-        resetBoard();
+        displayWin(currentValue);
     } else {
         movesMade++;
         if(movesMade < 9){
             toggleTurn();
         } else {
-            resetBoard();
+            displayWin('');
         }
     }
 }
@@ -109,6 +109,12 @@ function updateScoreboard(){
     playerO.textContent = `Player O Score: ${oScore}`;
 }
 
+function newGame(){
+    playerX.textContent = 'Player X Score: 0';
+    playerO.textContent = 'Player O Score: 0';
+    resetBoard();
+}
+
 function resetBoard(){
     game.forEach((square) =>{
         square.reset();
@@ -117,6 +123,34 @@ function resetBoard(){
     currentValue = 'O';
     toggleTurn();
 }
-resetButton.addEventListener('click', () => resetBoard());
+
+function displayWin(winnerValue){
+    currentValue = '';
+
+    let message = 'It was a Tie!';
+    if(winnerValue === 'X') {
+        message = 'Player X Wins!';
+    } else {
+        message = 'Player O Wins!';
+    }
+
+    let holder = document.querySelector('#winner-message');
+
+    let messageDisplay = document.createElement('div');
+    messageDisplay.textContent = message;
+    holder.appendChild(messageDisplay);
+    
+    let newGameButton = document.createElement('button');
+    newGameButton.textContent = 'New Board';
+    newGameButton.addEventListener('click', () => {
+        currentValue = 'X';
+        while(holder.firstChild){
+            holder.removeChild(holder.firstChild);
+        }
+
+        resetBoard();
+    });
+    holder.appendChild(newGameButton);
+}
 
 toggleTurn();
